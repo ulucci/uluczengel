@@ -9,32 +9,32 @@ public class ClickTeleport : MonoBehaviour
     public Transform floor2Target;
     public Transform floor3Target;
 
+    public Collider2D elevatorZone;
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0)) return;
+
+        if (!elevatorZone.OverlapPoint(player.position)) return;
+
+        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D hit = Physics2D.OverlapPoint(mousePos);
+
+        if (hit == null) return;
+
+        switch (hit.gameObject.name)
         {
-            Vector2 mousePos =
-                cam.ScreenToWorldPoint(Input.mousePosition);
+            case "Door_1":
+                player.position = floor1Target.position;
+                break;
 
-            Collider2D hit =
-                Physics2D.OverlapPoint(mousePos);
+            case "Door_2":
+                player.position = floor2Target.position;
+                break;
 
-            if (hit == null) return;
-
-            switch (hit.gameObject.name)
-            {
-                case "Door_1":
-                    player.position = floor1Target.position;
-                    break;
-
-                case "Door_2":
-                    player.position = floor2Target.position;
-                    break;
-
-                case "Door_3":
-                    player.position = floor3Target.position;
-                    break;
-            }
+            case "Door_3":
+                player.position = floor3Target.position;
+                break;
         }
     }
 }

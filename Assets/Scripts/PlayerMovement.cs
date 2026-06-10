@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float lastClickTime;
 
+    private bool touchingWall;
+    private Vector2 wallNormal;
+
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
@@ -34,53 +37,42 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0)) return;
+
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+
+        Vector3 newTarget = new Vector3(mousePos.x, transform.position.y, 0);
+
+        if (touchingWall)
         {
-            Vector3 mousePos =
-                Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            mousePos.z = 0;
-
-            running =
-                Time.time - lastClickTime <= doubleClickDelay;
-
-            lastClickTime = Time.time;
-
-            targetPosition = new Vector3(
-                mousePos.x,
-                transform.position.y,
-                0
-            );
-
-            moving = true;
+            Vector2 newDir = (newTarget - transform.position).normalized;
+            if (Vector2.Dot(newDir, wallNormal) < 0) return;
         }
+
+        running = Time.time - lastClickTime <= doubleClickDelay;
+        lastClickTime = Time.time;
+        targetPosition = newTarget;
+        moving = true;
     }
 
     void MovePlayer()
     {
         if (!moving) return;
 
-        float speed =
-            running ? runSpeed : walkSpeed;
+        float speed = running ? runSpeed : walkSpeed;
 
-        transform.position =
-            Vector3.MoveTowards(
-                transform.position,
-                targetPosition,
-                speed * Time.deltaTime
-            );
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            targetPosition,
+            speed * Time.deltaTime
+        );
 
-        // yön çevir
         if (targetPosition.x > transform.position.x)
-        {
             spriteRenderer.flipX = false;
-        }
         else if (targetPosition.x < transform.position.x)
-        {
             spriteRenderer.flipX = true;
-        }
 
-        // dur
         if (Vector3.Distance(transform.position, targetPosition) < 0.05f)
         {
             moving = false;
@@ -91,10 +83,24 @@ public class PlayerMovement : MonoBehaviour
     void UpdateAnimations()
     {
         animator.SetBool("IsWalking", moving);
+        animator.SetBool("IsRunning", moving && running);
+    }
 
-        animator.SetBool(
-            "IsRunning",
-            moving && running
-        );
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        touchingWall = true;
+        wallNormal = collision.contacts[0].normal;
+        moving = false;
+        running = false;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        wallNormal = collision.contacts[0].normal;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        touchingWall = false;
     }
 }
