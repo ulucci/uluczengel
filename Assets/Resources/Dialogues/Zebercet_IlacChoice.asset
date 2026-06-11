@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015e2a4f9598de446aa24b4a60a6c0c9, type: 3}
+  m_Name: Zebercet_IlacChoice
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: Zebercet
+  dialogueText: 
+  moneyDelta: 0
+  eventKey: 
+  nextNode: {fileID: 0}
+  choices:
+  - choiceText: "Asl\u0131nda ben de buraya babam\u0131n borcunu \xF6demek i\xE7in
+      geldim. Param olsa zaten burada olmam efendim. Kusura bakmay\u0131n."
+    nextNode: {fileID: 11400000, guid: 3f33742cc17116a428461324b7565969, type: 2}
+    moneyDelta: 0
+    eventKey: 
+  - choiceText: "Bunu yapabilirim galiba beni s\u0131k\u0131nt\u0131ya sokabilir
+      ama burada bekleyin ilac\u0131 al\u0131p geliyorum."
+    nextNode: {fileID: 11400000, guid: 4a232d45fc94a5146ad9e7b54c322810, type: 2}
+    moneyDelta: 0
+    eventKey: 

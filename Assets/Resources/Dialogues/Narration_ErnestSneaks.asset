@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015e2a4f9598de446aa24b4a60a6c0c9, type: 3}
+  m_Name: Narration_ErnestSneaks
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: 
+  dialogueText: "Yazar ana kap\u0131dan gizlice girdi\u011Fini g\xF6r\xFCrken gazeteye
+    sar\u0131l\u0131 m\xFCrekkebi g\xF6r\xFCrs\xFCn\u2026"
+  moneyDelta: 0
+  eventKey: 
+  nextNode: {fileID: 11400000, guid: ba143e91a27308f4a8ed67ce35744ede, type: 2}
+  choices: []

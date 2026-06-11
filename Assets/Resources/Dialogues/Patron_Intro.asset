@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015e2a4f9598de446aa24b4a60a6c0c9, type: 3}
+  m_Name: Patron_Intro
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: Patron
+  dialogueText: "Ho\u015F geldin. Ben bu otelin patronuyum, sen Zebercet olmal\u0131s\u0131n.
+    Bu otelin baz\u0131 kurallar\u0131 vard\u0131r. Her misafirimiz ba\u015F\u0131na
+    prim para al\u0131rs\u0131n ve onlar\u0131n istedikleri \u015Feyleri sa\u011Flamal\u0131s\u0131n,
+    tabii ki d\u0131\u015Far\u0131dan de\u011Fil! Resepsiyonumuz ayn\u0131 zamanda
+    market, m\xFC\u015Fteriler d\u0131\u015Far\u0131dan \xFCr\xFCn getirmesin diye
+    b\xF6yle bir \xE7\xF6z\xFCm buldum. Nas\u0131l ama?"
+  moneyDelta: 0
+  eventKey: 
+  nextNode: {fileID: 11400000, guid: 2db5b9fd9644ce24ab5711f1ef727ed7, type: 2}
+  choices: []

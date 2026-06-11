@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b4f7ec81b397a4cb75004f15b0d751, type: 3}
+  m_Name: FatherLetter
+  m_EditorClassIdentifier: Assembly-CSharp::LetterData
+  lines:
+  - "Sevgili O\u011Flum,\n"
+  - "Bu mektubu okuyorsan demek ki tahtal\u0131 k\xF6y\xFC boylam\u0131\u015F\u0131m
+    demektir."
+  - "Maalesef sizi daha iyi ge\xE7indirmek i\xE7in borca batt\u0131m, borcumu \xF6deyebilmek
+    i\xE7in de bir otelde i\u015Fe girdim ama hastaland\u0131m."
+  - "Bu mektubu da borcumu \xF6deyemeden \xF6l\xFCrsem diye sana yaz\u0131yorum o\u011Flum."
+  - "Maviova'da bir otelde \xE7al\u0131\u015F\u0131yorum, tabii bu mektubu okuyorsan
+    art\u0131k \xE7al\u0131\u015Fm\u0131yorum demektir."
+  - "Yani hemen bir otob\xFCse atlay\u0131p Maviova'ya gelip borcumuzu \xF6deyene
+    kadar \xE7al\u0131\u015Fman gerek."
+  - "Fazla vaktin yok l\xFCtfen acele et.\n"
+  - <align="right">-Baban</align>

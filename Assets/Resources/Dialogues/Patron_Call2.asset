@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015e2a4f9598de446aa24b4a60a6c0c9, type: 3}
+  m_Name: Patron_Call2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: Patron
+  dialogueText: "GAZETEDE MAN\u015EET OLMU\u015EUZ!?! Bir tane yazar otelim ve senin
+    hakk\u0131nda a\u011F\u0131za al\u0131nmayacak \u015Feyler s\xF6ylemi\u015F!
+    Ben bu kayb\u0131 nas\u0131l kar\u015F\u0131layaca\u011F\u0131m s\xF6ylesene!
+    Maa\u015F\u0131ndan kesiyorum bunu uyar\u0131 olarak kabul et."
+  moneyDelta: -500
+  eventKey: 
+  nextNode: {fileID: 11400000, guid: 5bc1ec970c174334b8cc4b53cc45cf38, type: 2}
+  choices: []

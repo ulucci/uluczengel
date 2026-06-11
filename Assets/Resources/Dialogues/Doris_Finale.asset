@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015e2a4f9598de446aa24b4a60a6c0c9, type: 3}
+  m_Name: Doris_Finale
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: Doris
+  dialogueText: "Sana bunu s\xF6ylememem gerekiyor ama \xE7ok iyi bir insana benziyorsun\u2026
+    Ben baban\u0131n gayri resmi e\u015Fiyim. Gilbert'a yani karde\u015Fine ilac\u0131
+    sa\u011Flayarak hayatta kalmas\u0131n\u0131 sa\u011Flad\u0131n. Ne kadar te\u015Fekk\xFCr
+    etsem az\u2026 Ve buraya bo\u015Funa gelmedik. Baban \xF6lmedi Zebercet. Patron
+    baban\u0131 ka\xE7\u0131rd\u0131 ve babana o mektubu yazd\u0131rd\u0131. Sadece
+    sen burada o pis patrona daha fazla para kazand\u0131r diye. Baban\u0131 \xF6lm\xFC\u015F
+    gibi g\xF6sterip sana olmayan bir borcu \xF6detiyor."
+  moneyDelta: 0
+  eventKey: ending_good
+  nextNode: {fileID: 0}
+  choices: []

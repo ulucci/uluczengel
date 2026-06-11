@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     void HandleInput()
     {
         if (!Input.GetMouseButtonDown(0)) return;
+        if (DialogueManager.IsOpen || IntroManager.IsActive) return;
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
