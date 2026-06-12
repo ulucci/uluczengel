@@ -7,19 +7,20 @@ public class NPCDialogue : MonoBehaviour
     [SerializeField] private DialogueNode deliveryNode;
     [SerializeField] private GameObject exclamationMark;
     [SerializeField] private int requiredPhase = 1;
-    [SerializeField] private bool notifiesPhase1Done = false;
-    [SerializeField] private bool notifiesDorisUnlock = false;
+    [SerializeField] private bool notifiesPhase1Done;
+    [SerializeField] private bool notifiesDorisUnlock;
 
-    [SerializeField] private bool requiresPurchase = false;
-    [SerializeField] private string itemName = "";
-    [SerializeField] private int itemCost = 0;
+    [Header("Purchase")]
+    [SerializeField] private bool requiresPurchase;
+    [SerializeField] private string itemName;
+    [SerializeField] private int itemCost;
     [SerializeField] private Sprite itemSprite;
 
-    public string ItemName => itemName;
-    public int ItemCost => itemCost;
+    public string ItemName  => itemName;
+    public int    ItemCost  => itemCost;
     public Sprite ItemSprite => itemSprite;
     public bool WaitingForPurchase { get; private set; }
-    public bool ItemReady { get; private set; }
+    public bool ItemReady          { get; private set; }
 
     private bool introSeen;
     private bool taskPlayed;
@@ -34,28 +35,23 @@ public class NPCDialogue : MonoBehaviour
 
     private void Update()
     {
-        bool phaseOk = StoryManager.Instance != null && StoryManager.Instance.Phase >= requiredPhase;
+        bool phaseOk    = StoryManager.Instance != null && StoryManager.Instance.Phase >= requiredPhase;
         bool canInteract = !taskDone && phaseOk && !WaitingForPurchase;
 
         if (exclamationMark != null)
             exclamationMark.SetActive(canInteract);
 
         if (!canInteract || !playerInRange || DialogueManager.IsOpen || IntroManager.IsActive) return;
-        if (Input.GetKeyDown(KeyCode.E))
-            TriggerDialogue();
+        if (Input.GetKeyDown(KeyCode.E)) TriggerDialogue();
     }
 
     private void TriggerDialogue()
     {
         DialogueNode node;
-        if (!introSeen)
-            node = introNode;
-        else if (!taskPlayed)
-            node = taskNode;
-        else if (ItemReady && deliveryNode != null)
-            node = deliveryNode;
-        else
-            return;
+        if      (!introSeen)                          node = introNode;
+        else if (!taskPlayed)                         node = taskNode;
+        else if (ItemReady && deliveryNode != null)   node = deliveryNode;
+        else return;
 
         if (node == null) return;
         npcMovement?.PauseForDialogue(GameObject.FindWithTag("Player").transform);
@@ -64,7 +60,6 @@ public class NPCDialogue : MonoBehaviour
 
     public void OnDialogueComplete()
     {
-        Debug.Log($"[NPCDialogue] OnDialogueComplete — {gameObject.name} introSeen={introSeen} taskPlayed={taskPlayed} ItemReady={ItemReady} taskDone={taskDone} WaitingForPurchase={WaitingForPurchase}");
         if (!introSeen)
         {
             introSeen = true;
@@ -90,7 +85,6 @@ public class NPCDialogue : MonoBehaviour
         npcMovement?.ResumeFromDialogue();
     }
 
-    // ReceptionCounter tarafından çağrılır
     public void SetItemReady()
     {
         WaitingForPurchase = false;
@@ -99,9 +93,8 @@ public class NPCDialogue : MonoBehaviour
 
     private void NotifyCompletion()
     {
-        Debug.Log($"[NPCDialogue] NotifyCompletion — {gameObject.name} notifiesDorisUnlock={notifiesDorisUnlock}");
         if (StoryManager.Instance == null) return;
-        if (notifiesPhase1Done) StoryManager.Instance.OnPhase1TaskDone();
+        if (notifiesPhase1Done)  StoryManager.Instance.OnPhase1TaskDone();
         if (notifiesDorisUnlock) StoryManager.Instance.OnDoloresDelivered();
     }
 

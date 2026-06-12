@@ -359,11 +359,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1861923034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 320, y: 0}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &183440243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,9 +820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224709940}
-  - component: {fileID: 224709942}
   - component: {fileID: 224709941}
-  - component: {fileID: 224709943}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -857,37 +855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a4908de879dc34e98b84edef29fd22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
---- !u!114 &224709942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224709938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5889be49ada20a541a5e49479754041f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  dialoguePanel: {fileID: 840633383}
-  speakerText: {fileID: 784188451}
-  dialogueText: {fileID: 777862595}
-  choiceTextA: {fileID: 1797475194}
-  choiceTextB: {fileID: 1104677300}
-  typeSpeed: 0.04
---- !u!114 &224709943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224709938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e146b6e8cd7cf48b75c0c4248f2913, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEventHandler
-  events: []
 --- !u!1 &262263210
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,102 +933,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
---- !u!1 &275077459
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 275077460}
-  - component: {fileID: 275077461}
-  m_Layer: 0
-  m_Name: DialougeEventHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &275077460
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275077459}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &275077461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275077459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e146b6e8cd7cf48b75c0c4248f2913, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueEventHandler
-  events:
-  - key: ernest_expelled
-    onTrigger:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 782981529}
-          m_TargetAssemblyTypeName: NPCMovement, Assembly-CSharp
-          m_MethodName: Expel
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    chainDialogue: {fileID: 0}
-  - key: doris_accepted
-    onTrigger:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2110216064}
-          m_TargetAssemblyTypeName: IntroManager, Assembly-CSharp
-          m_MethodName: ShowAcceptLetter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    chainDialogue: {fileID: 0}
-  - key: doris_refused
-    onTrigger:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2110216064}
-          m_TargetAssemblyTypeName: IntroManager, Assembly-CSharp
-          m_MethodName: ShowRefuseLetter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    chainDialogue: {fileID: 0}
 --- !u!1 &311483881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,6 +1612,97 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &631933373
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1783155266}
+    m_Modifications:
+    - target: {fileID: 3587969830997550367, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_Name
+      value: Alert
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587969830997550367, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.34899998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.783
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768726063685602113, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768726063685602113, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768726063685602113, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+--- !u!1 &631933374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3587969830997550367, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+  m_PrefabInstance: {fileID: 631933373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &631933375 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6126061270642841090, guid: 2b85350e970367144ad7834a4e1fc749, type: 3}
+  m_PrefabInstance: {fileID: 631933373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &653026421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,6 +1896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 772957708}
   - component: {fileID: 772957709}
+  - component: {fileID: 772957710}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -1974,6 +1937,70 @@ MonoBehaviour:
   choiceTextA: {fileID: 1797475194}
   choiceTextB: {fileID: 1104677300}
   typeSpeed: 0.04
+--- !u!114 &772957710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772957707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e146b6e8cd7cf48b75c0c4248f2913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueEventHandler
+  events:
+  - key: ernest_expelled
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 782981529}
+          m_TargetAssemblyTypeName: NPCMovement, Assembly-CSharp
+          m_MethodName: Expel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    chainDialogue: {fileID: 0}
+  - key: doris_refused
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2110216064}
+          m_TargetAssemblyTypeName: IntroManager, Assembly-CSharp
+          m_MethodName: ShowRefuseLetter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    chainDialogue: {fileID: 0}
+  - key: doris_accepted
+    onTrigger:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2110216064}
+          m_TargetAssemblyTypeName: IntroManager, Assembly-CSharp
+          m_MethodName: ShowAcceptLetter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    chainDialogue: {fileID: 0}
 --- !u!1 &774257084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4559,7 +4586,8 @@ Transform:
   m_LocalPosition: {x: -2.519, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 631933375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1783155267
@@ -4576,6 +4604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReceptionCounter
   shopPanel: {fileID: 59306935}
   itemGrid: {fileID: 183440242}
+  shopExclamationMark: {fileID: 631933374}
 --- !u!61 &1783155268
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5479,7 +5508,6 @@ SceneRoots:
   - {fileID: 1806071342}
   - {fileID: 224709940}
   - {fileID: 1783155266}
-  - {fileID: 275077460}
   - {fileID: 772957708}
   - {fileID: 782981528}
   - {fileID: 657898012}

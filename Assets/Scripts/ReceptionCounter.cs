@@ -5,20 +5,36 @@ public class ReceptionCounter : MonoBehaviour
 {
     [SerializeField] private GameObject shopPanel;
     [SerializeField] private Transform itemGrid;
+    [SerializeField] private GameObject shopExclamationMark;
 
     private bool playerInRange;
     private bool isOpen;
     private readonly List<NPCDialogue> currentItems = new List<NPCDialogue>();
     private readonly List<GameObject> spawnedSlots  = new List<GameObject>();
 
+    private void OnEnable()  => DialogueManager.OnDialogueClosed += RefreshExclamation;
+    private void OnDisable() => DialogueManager.OnDialogueClosed -= RefreshExclamation;
+
+    private void RefreshExclamation()
+    {
+        if (shopExclamationMark == null || isOpen) return;
+        foreach (var npc in FindObjectsOfType<NPCDialogue>())
+        {
+            if (npc.WaitingForPurchase) { shopExclamationMark.SetActive(true); return; }
+        }
+        shopExclamationMark.SetActive(false);
+    }
+
     private void Update()
     {
         if (DialogueManager.IsOpen || IntroManager.IsActive) return;
+
         if (!isOpen)
         {
             if (playerInRange && Input.GetKeyDown(KeyCode.E)) Open();
             return;
         }
+
         if (Input.GetKeyDown(KeyCode.Escape)) Close();
     }
 
@@ -51,15 +67,13 @@ public class ReceptionCounter : MonoBehaviour
 
     public void CompletePurchase(NPCDialogue npc, GameObject slotGO)
     {
-        if (npc.ItemCost > 0)
-            GameManager.Instance.AddMoney(-npc.ItemCost);
-
+        if (npc.ItemCost > 0) GameManager.Instance.AddMoney(-npc.ItemCost);
         npc.SetItemReady();
         currentItems.Remove(npc);
         spawnedSlots.Remove(slotGO);
         Destroy(slotGO);
-
         if (currentItems.Count == 0) Close();
+        RefreshExclamation();
     }
 
     public void Close()

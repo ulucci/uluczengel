@@ -10,6 +10,7 @@ public class ShopSlot : MonoBehaviour,
     private NPCDialogue npc;
     private ReceptionCounter counter;
 
+    private RectTransform container;
     private Image hoverOverlay;
     private TextMeshProUGUI priceLabel;
     private CanvasGroup canvasGroup;
@@ -24,12 +25,17 @@ public class ShopSlot : MonoBehaviour,
         priceColor = npcRef.ItemCost > 0 ? Color.yellow : Color.green;
 
         canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        
+        var containerGO = MakeChild(transform, "Container");
+        SetAnchors(containerGO, 0f, 0f, 1f, 1f);
+        container = (RectTransform)containerGO.transform;
 
-        var bg = gameObject.AddComponent<Image>();
+        var bgGO = MakeChild(container, "BG");
+        SetAnchors(bgGO, 0f, 0f, 1f, 1f);
+        var bg = bgGO.AddComponent<Image>();
         bg.color = new Color(0.13f, 0.13f, 0.13f, 0.95f);
 
-        // Ürün görseli — AspectRatioFitter ile doğru oran
-        var imgGO = MakeChild("Img");
+        var imgGO = MakeChild(container, "Img");
         SetAnchors(imgGO, 0.1f, 0.3f, 0.9f, 0.95f);
         var img = imgGO.AddComponent<Image>();
         img.sprite = npc.ItemSprite;
@@ -45,33 +51,33 @@ public class ShopSlot : MonoBehaviour,
             arf.aspectRatio = (float)npc.ItemSprite.rect.width / npc.ItemSprite.rect.height;
         }
 
-        // İsim (alt, her zaman görünür)
-        var nameGO = MakeChild("Name");
+        var nameGO = MakeChild(container, "Name");
         SetAnchors(nameGO, 0f, 0f, 1f, 0.3f);
         var nameTmp = nameGO.AddComponent<TextMeshProUGUI>();
-        nameTmp.text      = npc.ItemName;
-        nameTmp.alignment = TextAlignmentOptions.Center;
-        nameTmp.fontSize  = 11;
-        nameTmp.color     = Color.white;
+        nameTmp.text             = npc.ItemName;
+        nameTmp.alignment        = TextAlignmentOptions.Center;
+        nameTmp.enableAutoSizing = true;
+        nameTmp.fontSizeMin      = 6;
+        nameTmp.fontSizeMax      = 14;
+        nameTmp.color            = Color.white;
 
-        // Hover overlay (karartma)
-        var overlayGO = MakeChild("Overlay");
+        var overlayGO = MakeChild(container, "Overlay");
         SetAnchors(overlayGO, 0f, 0f, 1f, 1f);
         hoverOverlay       = overlayGO.AddComponent<Image>();
         hoverOverlay.color = new Color(0f, 0f, 0f, 0f);
 
-        // Fiyat (overlay üstünde, hover'da görünür)
-        var priceGO = MakeChild("Price");
+        var priceGO = MakeChild(container, "Price");
         SetAnchors(priceGO, 0f, 0.3f, 1f, 0.7f);
-        priceLabel            = priceGO.AddComponent<TextMeshProUGUI>();
-        priceLabel.text       = npc.ItemCost > 0 ? npc.ItemCost + " ₺" : "Ücretsiz";
-        priceLabel.alignment  = TextAlignmentOptions.Center;
-        priceLabel.fontSize   = 15;
-        priceLabel.fontStyle  = FontStyles.Bold;
-        priceLabel.color      = new Color(priceColor.r, priceColor.g, priceColor.b, 0f);
+        priceLabel                  = priceGO.AddComponent<TextMeshProUGUI>();
+        priceLabel.text             = npc.ItemCost > 0 ? npc.ItemCost + " ₺" : "Ücretsiz";
+        priceLabel.alignment        = TextAlignmentOptions.Center;
+        priceLabel.enableAutoSizing = true;
+        priceLabel.fontSizeMin      = 8;
+        priceLabel.fontSizeMax      = 18;
+        priceLabel.fontStyle        = FontStyles.Bold;
+        priceLabel.color            = new Color(priceColor.r, priceColor.g, priceColor.b, 0f);
     }
 
-    // ── Hover ────────────────────────────────────────────────────────────────
 
     public void OnPointerEnter(PointerEventData _)
     {
@@ -87,7 +93,6 @@ public class ShopSlot : MonoBehaviour,
         priceLabel.DOFade(0f, 0.12f);
     }
 
-    // ── Tıklama ──────────────────────────────────────────────────────────────
 
     public void OnPointerClick(PointerEventData _)
     {
@@ -101,7 +106,7 @@ public class ShopSlot : MonoBehaviour,
     private void PlayBuyAnim()
     {
         animating = true;
-        transform.DOPunchScale(Vector3.one * 0.18f, 0.22f, 8, 0.5f)
+        container.DOPunchScale(Vector3.one * 0.18f, 0.22f, 8, 0.5f)
             .OnComplete(() =>
                 canvasGroup.DOFade(0f, 0.25f)
                     .OnComplete(() => counter.CompletePurchase(npc, gameObject)));
@@ -110,13 +115,12 @@ public class ShopSlot : MonoBehaviour,
     private void PlayDenyAnim()
     {
         animating = true;
-        // Fiyatı kırmızı yak, salla, geri al
         priceLabel.DOFade(1f, 0f);
         hoverOverlay.DOFade(0.55f, 0f);
 
         DOTween.Sequence()
             .Append(priceLabel.DOColor(Color.red, 0.08f))
-            .Append(((RectTransform)transform).DOShakeAnchorPos(0.35f, new Vector2(10f, 0f), 20, 0f))
+            .Append(container.DOShakeAnchorPos(0.35f, new Vector2(10f, 0f), 20, 0f))
             .Append(priceLabel.DOColor(priceColor, 0.2f))
             .OnComplete(() =>
             {
@@ -126,12 +130,11 @@ public class ShopSlot : MonoBehaviour,
             });
     }
 
-    // ── Yardımcı ─────────────────────────────────────────────────────────────
 
-    private GameObject MakeChild(string n)
+    private static GameObject MakeChild(Transform parent, string n)
     {
         var go = new GameObject(n, typeof(RectTransform));
-        go.transform.SetParent(transform, false);
+        go.transform.SetParent(parent, false);
         return go;
     }
 

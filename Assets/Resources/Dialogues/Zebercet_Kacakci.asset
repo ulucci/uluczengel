@@ -22,12 +22,9 @@ MonoBehaviour:
       zorunday\u0131m."
     nextNode: {fileID: 0}
     moneyDelta: 500
-    endingType: 0
-    eventKey: 
+    eventKey: ernest_expelled
   - choiceText: "Tamam ama ikimiz de g\xF6rmedik say\u0131yorum bunu bu seferlik
       ge\xE7in."
     nextNode: {fileID: 0}
     moneyDelta: -500
-    endingType: 0
     eventKey: 
-  endingType: 0

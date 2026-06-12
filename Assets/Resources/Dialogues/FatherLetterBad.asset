@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FatherLetterBad
   m_EditorClassIdentifier: Assembly-CSharp::LetterData
   lines:
-  - "Sevgili o\u011Flum, "
+  - "Sevgili o\u011Flum,\n\n"
   - "Bu mektubu okuyorsan senden saklad\u0131\u011F\u0131m Gilbert ad\u0131nda ba\u015Fka
     bir o\u011Flumun daha oldu\u011Funu bilmeni isterim. "
   - '

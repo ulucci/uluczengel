@@ -22,10 +22,7 @@ public class StoryManager : MonoBehaviour
         gilbertObject?.SetActive(false);
     }
 
-    public void OnPatronIntroDone()
-    {
-        Phase = 1;
-    }
+    public void OnPatronIntroDone() => Phase = 1;
 
     public void OnDoloresDelivered()
     {
@@ -36,11 +33,6 @@ public class StoryManager : MonoBehaviour
     public void OnPhase1TaskDone()
     {
         phase1TasksDone++;
-        if (phase1TasksDone >= 2)
-        {
-            Phase = 2;
-            dorisObject?.SetActive(true);
-            gilbertObject?.SetActive(true);
-        }
+        if (phase1TasksDone >= 2) Phase = 2;
     }
 }

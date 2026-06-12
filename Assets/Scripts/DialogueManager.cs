@@ -6,6 +6,7 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
     public static bool IsOpen { get; private set; }
+    public static event System.Action OnDialogueClosed;
 
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TMP_Text speakerText;
@@ -99,30 +100,22 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(currentNode.eventKey))
             DialogueEventHandler.Instance.Trigger(currentNode.eventKey);
 
-        if (currentNode.nextNode != null)
-            ShowNode(currentNode.nextNode);
-        else
-            CloseDialogue();
+        if (currentNode.nextNode != null) ShowNode(currentNode.nextNode);
+        else CloseDialogue();
     }
 
     public void SelectChoice(int index)
     {
         var choice = currentNode.choices[index];
-        Debug.Log($"[SelectChoice] index={index} moneyDelta={choice.moneyDelta} eventKey={choice.eventKey}");
 
         if (choice.moneyDelta != 0)
-        {
             GameManager.Instance.AddMoney(choice.moneyDelta);
-            Debug.Log($"[Money] AddMoney({choice.moneyDelta}) → toplam: {GameManager.Instance.Money}");
-        }
 
         if (!string.IsNullOrEmpty(choice.eventKey))
             DialogueEventHandler.Instance.Trigger(choice.eventKey);
 
-        if (choice.nextNode != null)
-            ShowNode(choice.nextNode);
-        else
-            CloseDialogue();
+        if (choice.nextNode != null) ShowNode(choice.nextNode);
+        else CloseDialogue();
     }
 
     private void ShowChoices()
@@ -149,6 +142,7 @@ public class DialogueManager : MonoBehaviour
         var cb = onCompleteCallback;
         onCompleteCallback = null;
         cb?.Invoke();
+        OnDialogueClosed?.Invoke();
     }
 
     private bool HasChoices() =>

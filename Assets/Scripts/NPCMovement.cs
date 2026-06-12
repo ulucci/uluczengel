@@ -80,7 +80,6 @@ public class NPCMovement : MonoBehaviour
         animator.SetBool("isWalking", true);
     }
 
-    // UnityEvent'ten parametre olmadan çağırmak için
     public void Expel()
     {
         if (exitPoint != null) Expel(exitPoint);
